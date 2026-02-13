@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FramHire - Freelance V2</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --primary-green: #1dbf73;
+            --dark-gray: #404145;
+            --light-gray: #74767e;
+            --border-color: #e4e5e7;
+            --white: #ffffff;
+            --hero-overlay: rgba(0, 0, 0, 0.45);
+            --red-color: red;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Manrope', sans-serif;
+            color: var(--dark-gray);
+            overflow-x: hidden;
+        }
+
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px 32px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: transparent;
+            z-index: 1000;
+            transition: background 0.3s ease;
+        }
+
+
+
+        .logo {
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--white);
+            letter-spacing: -1px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo span {
+            color: var(--primary-green);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--white);
+            font-weight: 600;
+            font-size: 16px;
+            transition: color 0.2s;
+        }
+
+        .nav-link:hover {
+            color: var(--primary-green);
+        }
+
+        .btn-join {
+            padding: 8px 20px;
+            border: 1px solid var(--white);
+            border-radius: 4px;
+            background: transparent;
+            color: var(--white);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-join:hover {
+            background: var(--primary-green);
+            border-color: var(--primary-green);
+        }
+
+
+        .hero {
+            position: relative;
+            height: 680px;
+
+            background-image: url('https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-4.0.3&auto=format&fit=crop&w=2560&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding-left: 60px;
+
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to right, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.6) 40%, rgba(0, 0, 0, 0.1) 100%);
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 680px;
+            color: var(--white);
+            margin-left: 20px;
+
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            line-height: 1.2;
+            font-weight: 700;
+            margin-bottom: 30px;
+        }
+
+        .search-container {
+            position: relative;
+            margin-bottom: 24px;
+        }
+
+        .search-bar {
+            width: 100%;
+            height: 48px;
+            border-radius: 4px;
+            border: none;
+            padding: 0 50px 0 16px;
+            font-size: 16px;
+            font-family: inherit;
+            outline: none;
+        }
+
+        .search-icon-btn {
+            position: absolute;
+            right: 0;
+            top: 0;
+            height: 100%;
+            width: 50px;
+            background: var(--dark-gray);
+
+            border: none;
+            border-top-right-radius: 4px;
+            border-bottom-right-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        .search-icon-btn svg {
+            fill: var(--white);
+            width: 18px;
+            height: 18px;
+        }
+
+        .hero-tags {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 14px;
+            flex-wrap: wrap;
+        }
+
+        .hero-tags span {
+            font-weight: 600;
+            margin-right: 4px;
+        }
+
+        .tag {
+            padding: 4px 12px;
+            border: 1px solid var(--white);
+            border-radius: 100px;
+            color: var(--white);
+            text-decoration: none;
+            font-size: 13px;
+            transition: all 0.2s;
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .tag:hover {
+            background: var(--white);
+            color: var(--dark-gray);
+        }
+
+
+        .trusted-by {
+            position: absolute;
+            bottom: 30px;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+            z-index: 2;
+            color: #b5b6ba;
+
+            font-weight: 600;
+            font-size: 15px;
+            pointer-events: none;
+
+        }
+
+        .trusted-label {
+            margin-right: 10px;
+        }
+
+        .brand-logo {
+            font-family: sans-serif;
+
+            filter: grayscale(100%) brightness(200%);
+
+            opacity: 0.7;
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+
+        /* Services Section */
+        .services-stripe {
+            background: #74767e;
+            /* Very light gray background */
+            padding: 40px 0;
+            border-radius: 20px;
+        }
+
+        .services-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            /* Space between items */
+            flex-wrap: wrap;
+
+            padding: 0 20px;
+            background-color: #404145;
+            border-radius: 20px;
+        }
+
+
+        .service-item {
+            width: 140px;
+            /* Fixed width for icon cards */
+            height: 140px;
+            background: var(--white);
+            border-radius: 8px;
+            /* Slightly rounded */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            /* Subtle shadow */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .service-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .service-item::after {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 2px;
+            background: var(--primary-green);
+            bottom: 20px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .service-item:hover::after {
+            opacity: 1;
+        }
+
+        .service-icon {
+            width: 48px;
+            height: 48px;
+            margin-bottom: 12px;
+        }
+
+        .service-label {
+            font-size: 14px;
+            font-weight: 600;
+            line-height: 1.4;
+            color: var(--dark-gray);
+        }
+
+        /* Popular Services Heading below */
+        .popular-services {
+            max-width: 1400px;
+            margin: 60px auto 30px;
+            padding: 0 32px;
+        }
+
+        .popular-services h2 {
+            font-size: 32px;
+            color: #404145;
+            font-weight: 700;
+        }
+
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            .nav-links {
+                display: none;
+                /* Hide nav for simplicity on mobile in this task */
+            }
+
+            .hero {
+                padding-left: 20px;
+                background-position: 70% 50%;
+                /* Adjust image focus */
+            }
+
+            .trusted-by {
+                flex-wrap: wrap;
+                gap: 20px;
+                bottom: 20px;
+            }
+
+            .services-container {
+                justify-content: flex-start;
+                overflow-x: auto;
+
+                flex-wrap: nowrap;
+                padding-bottom: 20px;
+
+            }
+        }
+    </style>
+</head>
+
+<body style="background-color: #404145;">
+
+
+    <header>
+        <a href="#" class="logo">FrameHire<span>.</span></a>
+        <nav class="nav-links">
+
+            <a href="#" class="nav-link">Explore</a>
+            <a href="#" class="nav-link">English</a>
+            <a href="#" class="nav-link">Become a Seller</a>
+            <a href="#" class="nav-link">Sign in</a>
+
+        </nav>
+    </header>
+
+
+    <section class="hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1>Our freelancers<br>will take it from here</h1>
+
+            <div class="search-container">
+                <input type="text" class="search-bar" placeholder="Search for any service...">
+                <button class="search-icon-btn">
+                    <svg viewBox="0 0 24 24">
+                        <path
+                            d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" />
+                    </svg>
+                </button>
+            </div>
+
+            <div class="hero-tags">
+                <span>Popular:</span>
+                <a href="#" class="tag">Website Development</a>
+                <a href="#" class="tag">Architecture & Interior Design</a>
+                <a href="#" class="tag">UGC Videos</a>
+                <a href="#" class="tag">Video Editing</a>
+            </div>
+        </div>
+    </section>
+
+
+    <div class="services-stripe">
+        <!-- Replicating the row of icons: Tech, Graphics, Marketing, Writing, Video, AI, Music, Business, Consulting -->
+        <div class="services-container">
+
+
+
+            <!-- Graphics & Design -->
+            <div class="service-item">
+                <img src="https://cdns.iconmonstr.com/wp-content/releases/preview/2012/240/iconmonstr-pen-15.png"
+                    alt="Design" class="service-icon" style="opacity: 0.7;">
+                <span class="service-label">Graphics & <br>Design</span>
+            </div>
+
+            <!-- Video & Animation -->
+            <div class="service-item">
+                <img src="https://cdns.iconmonstr.com/wp-content/releases/preview/2012/240/iconmonstr-video-camera-10.png"
+                    alt="Video" class="service-icon" style="opacity: 0.7;">
+                <span class="service-label">Video & <br>Animation</span>
+            </div>
+
+
+            <!-- Music & Audio -->
+            <div class="service-item">
+                <img src="https://cdns.iconmonstr.com/wp-content/releases/preview/2012/240/iconmonstr-sound-wave-1.png"
+                    alt="Music" class="service-icon" style="opacity: 0.7;">
+                <span class="service-label">Music & <br>Audio</span>
+            </div>
+
+
+        </div>
+    </div>
+
+    <div class="popular-services">
+        <h2>Popular services</h2>
+        <!-- Placeholder for popular services slider if needed later -->
+    </div>
+
+</body>
+
+</html>
